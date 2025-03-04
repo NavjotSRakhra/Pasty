@@ -15,9 +15,7 @@ import {MatButton} from '@angular/material/button';
     selector: 'app-new-note-dialog',
     imports: [
         MatDialogTitle,
-        MatDialogContent,
         MatFormFieldModule,
-        MatDialogActions,
         MatInputModule,
         FormsModule,
         MatButton
