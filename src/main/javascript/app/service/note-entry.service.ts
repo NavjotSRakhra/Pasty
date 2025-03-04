@@ -1,5 +1,6 @@
 import {Injectable} from '@angular/core';
 import {NoteEntryResponse} from '../interface/note-entry-response';
+import {NoteEntryRequest} from '../interface/note-entry-request';
 
 @Injectable({
     providedIn: 'root'
@@ -15,5 +16,18 @@ export class NoteEntryService {
             window.location.href = '/404'
         }
         return await response.json() as NoteEntryResponse;
+    }
+
+    async saveNote(note: NoteEntryRequest): Promise<string> {
+        const response = await fetch(this.baseUrl, {
+            method: 'POST',
+            body: JSON.stringify(note),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+        let url = response.headers.get('Location');
+        let noteResponse: NoteEntryResponse = await response.json() as NoteEntryResponse;
+        return `${url}`;
     }
 }

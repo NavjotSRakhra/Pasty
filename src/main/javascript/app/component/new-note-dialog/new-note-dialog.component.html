@@ -1,0 +1,10 @@
+<div class="dialog">
+    <h2 mat-dialog-title>
+        Your pasty has been created.
+    </h2>
+    <mat-form-field>
+        <mat-label>Your paste can be found at:</mat-label>
+        <input matInput [(ngModel)]="this.url"/>
+    </mat-form-field>
+    <button mat-raised-button (click)="onNoClick()">Ok</button>
+</div>

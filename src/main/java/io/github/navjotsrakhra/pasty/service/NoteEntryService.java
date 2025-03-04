@@ -25,6 +25,7 @@ public class NoteEntryService {
     @SuppressWarnings("FieldCanBeLocal")
     private final int URL_LENGTH = 5;
     private final int DEFAULT_NOTE_EXPIRY_LENGTH_DAYS = 7;
+    private final int MAX_NOTE_EXPIRY_LENGTH_DAYS = 7;
 
     private static final Logger log = LoggerFactory.getLogger(NoteEntryService.class);
 
@@ -70,6 +71,17 @@ public class NoteEntryService {
             noteEntry.setExpiresAt(
                     ZonedDateTime.now()
                             .plusDays(DEFAULT_NOTE_EXPIRY_LENGTH_DAYS)
+            );
+        } else if (noteEntry.getExpiresAt()
+                .isAfter(
+                        ZonedDateTime
+                                .now()
+                                .plusDays(MAX_NOTE_EXPIRY_LENGTH_DAYS))
+        ) {
+            noteEntry.setExpiresAt(
+                    ZonedDateTime
+                            .now()
+                            .plusDays(MAX_NOTE_EXPIRY_LENGTH_DAYS)
             );
         }
     }

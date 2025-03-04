@@ -7,8 +7,13 @@ export const routes: Routes = [
         component: AppComponent
     },
     {
-        path: 'note/:urlIdentifier',
+        path: 'n/:urlIdentifier',
         loadComponent: () => import('./component/note-entry/note-entry.component')
             .then(m => m.NoteEntryComponent)
     },
+    {
+        path: 'note',
+        loadComponent: () => import('./component/note-entry-form/note-entry-form.component')
+            .then(m => m.NoteEntryFormComponent)
+    }
 ];

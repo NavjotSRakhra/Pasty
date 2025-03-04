@@ -5,6 +5,7 @@ import io.github.navjotsrakhra.pasty.model.response.NoteResponseDto;
 import io.github.navjotsrakhra.pasty.service.NoteEntryService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
 import java.security.Principal;
@@ -30,7 +31,11 @@ public class NoteController {
     public ResponseEntity<NoteResponseDto> createNote(@RequestBody NoteRequestDto noteRequestDto, Principal principal) {
         var response = this.noteEntryService.createNote(noteRequestDto, Optional.ofNullable(principal));
         return response.map(noteResponseDto -> ResponseEntity.created(
-                        URI.create("/note/" + noteResponseDto.getUrlIdentifier()))
+                        ServletUriComponentsBuilder
+                                .fromCurrentRequest()
+                                .replacePath("/n/{urlIdentifier}")
+                                .buildAndExpand(noteResponseDto.getUrlIdentifier())
+                                .toUri())
                 .body(noteResponseDto)).orElseGet(() -> ResponseEntity
                 .badRequest()
                 .build());

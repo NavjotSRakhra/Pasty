@@ -1,1 +1,14 @@
-<p>note-entry-form works!</p>
+<mat-card>
+    <mat-form-field>
+        <mat-label>
+            Title
+        </mat-label>
+        <input matInput [(ngModel)]="this.note.title">
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>Content</mat-label>
+        <textarea matInput cdkTextareaAutosize cdkAutosizeMinRows="30" cdkAutosizeMaxRows="50"
+                  [(ngModel)]="this.note.content"></textarea>
+    </mat-form-field>
+    <button mat-raised-button (click)="createNote($event)">Create</button>
+</mat-card>
