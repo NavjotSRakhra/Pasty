@@ -1,0 +1,9 @@
+<mat-card>
+    <div class="photo shine" *ngIf="!isLoaded"></div>
+    <mat-card-header *ngIf="isLoaded && this.note != undefined">
+        {{ this.note.title }}
+    </mat-card-header>
+    <mat-form-field *ngIf="isLoaded && this.note != undefined">
+            <textarea matInput cdkTextareaAutosize cdkAutosizeMinRows="3" cdkAutosizeMaxRows="20">{{this.note.content}}</textarea>
+    </mat-form-field>
+</mat-card>
