@@ -7,6 +7,8 @@ import io.github.navjotsrakhra.pasty.model.request.NoteRequestDto;
 import io.github.navjotsrakhra.pasty.model.response.NoteResponseDto;
 import io.github.navjotsrakhra.pasty.repository.NoteEntryRepository;
 import io.github.navjotsrakhra.pasty.repository.UserAccountRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import java.security.Principal;
@@ -23,6 +25,8 @@ public class NoteEntryService {
     @SuppressWarnings("FieldCanBeLocal")
     private final int URL_LENGTH = 5;
     private final int DEFAULT_NOTE_EXPIRY_LENGTH_DAYS = 7;
+
+    private static final Logger log = LoggerFactory.getLogger(NoteEntryService.class);
 
     public NoteEntryService(NoteEntryRepository noteEntryRepository, NoteEntryMapper noteEntryMapper, UserAccountRepository userAccountRepository) {
         this.noteEntryRepository = noteEntryRepository;
@@ -44,7 +48,9 @@ public class NoteEntryService {
     }
 
     public Optional<NoteResponseDto> createNote(NoteRequestDto noteRequestDto, Optional<Principal> principal) {
-        var noteEntry = noteEntryMapper.noteRequestDtoToNoteEntry(noteRequestDto);
+        log.info("Creating new note");
+        NoteEntry noteEntry = noteEntryMapper.noteRequestDtoToNoteEntry(noteRequestDto);
+        log.info("Note entry: {}", noteEntry);
         if (noteEntry.getUrlIdentifier() == null || noteEntry.getUrlIdentifier().isEmpty()) {
             noteEntry.setUrlIdentifier(generateRandomString(URL_LENGTH));
         }
@@ -53,7 +59,9 @@ public class NoteEntryService {
         setExpiryIfNotValid(noteEntry);
         noteEntry.setDeleted(false);
 
+        log.info("Final entry: {}", noteEntry);
         var response = this.noteEntryRepository.save(noteEntry);
+        log.info("Note entry: {}", response);
         return Optional.ofNullable(noteEntryMapper.noteEntryToNoteResponseDto(response));
     }
 

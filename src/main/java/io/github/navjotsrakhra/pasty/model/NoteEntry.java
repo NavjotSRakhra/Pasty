@@ -30,7 +30,7 @@ public class NoteEntry {
     @Column(unique = true, nullable = false)
     private String urlIdentifier;
 
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @ManyToOne(cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
     private UserAccount createdBy;
 
     private boolean isDeleted;

@@ -3,7 +3,7 @@ package io.github.navjotsrakhra.pasty.model.response;
 import java.time.ZonedDateTime;
 
 public class NoteResponseDto {
-    private String id;
+    private Long id;
     private String title;
     private String content;
     private ZonedDateTime createdAt;
@@ -13,7 +13,7 @@ public class NoteResponseDto {
     public NoteResponseDto() {
     }
 
-    public NoteResponseDto(String id, String title, String content, ZonedDateTime createdAt, ZonedDateTime expiresAt, String urlIdentifier) {
+    public NoteResponseDto(Long id, String title, String content, ZonedDateTime createdAt, ZonedDateTime expiresAt, String urlIdentifier) {
         this.id = id;
         this.title = title;
         this.content = content;
@@ -22,11 +22,11 @@ public class NoteResponseDto {
         this.urlIdentifier = urlIdentifier;
     }
 
-    public String getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
