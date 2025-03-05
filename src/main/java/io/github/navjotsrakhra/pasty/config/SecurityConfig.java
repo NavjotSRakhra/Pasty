@@ -18,6 +18,7 @@ public class SecurityConfig {
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(
                         authorizationManagerRequestMatcherRegistry -> authorizationManagerRequestMatcherRegistry
+                                .requestMatchers("/").permitAll()
                                 .requestMatchers("/n/*").permitAll()
                                 .requestMatchers("/note").permitAll()
                                 .requestMatchers("/api/note/*").permitAll()
