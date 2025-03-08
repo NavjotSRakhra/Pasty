@@ -39,9 +39,7 @@ public class UserAccountService {
     public void changeUserPassword(Optional<Principal> principal, String oldPassword, String newPassword) {
         if (principal.isPresent()) {
             Optional<UserAccount> userAccount = userAccountRepository.findByUsername(principal.get().getName());
-            System.out.println(userAccount.get().getPassword());
-            System.out.println(passwordEncoder.encode(userAccount.get().getPassword()));
-            if (userAccount.isPresent() && userAccount.get().getPassword().equals(passwordEncoder.encode(oldPassword))) {
+            if (userAccount.get().getPassword().equals(passwordEncoder.encode(oldPassword))) {
                 userAccount.get().setPassword(passwordEncoder.encode(newPassword));
                 userAccountRepository.save(userAccount.get());
             } else {

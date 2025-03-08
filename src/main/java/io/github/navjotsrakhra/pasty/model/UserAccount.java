@@ -1,7 +1,6 @@
 package io.github.navjotsrakhra.pasty.model;
 
 import jakarta.persistence.*;
-import org.hibernate.annotations.ColumnDefault;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -29,6 +28,13 @@ public class UserAccount implements UserDetails {
     private Boolean credentialsNonExpired;
     @Column(columnDefinition = "boolean default true")
     private Boolean enabled;
+
+    public UserAccount() {
+        accountNonExpired = true;
+        accountNonLocked = true;
+        credentialsNonExpired = true;
+        enabled = true;
+    }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

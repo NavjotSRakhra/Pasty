@@ -1,0 +1,31 @@
+mat-card {
+  margin: 48px;
+  padding: 24px;
+
+  width: 400px;
+  height: 300px;
+
+  align-items: center;
+  justify-items: center;
+}
+.container{
+  height: 100%;
+  width: 100%;
+
+  justify-items: center;
+}
+
+mat-form-field {
+  width: 100%;
+  flex-grow: 1;
+}
+
+button{
+  width: 100%;
+  flex-grow: 1;
+}
+
+.fill{
+  display: flex;
+  flex-grow: 2;
+}
