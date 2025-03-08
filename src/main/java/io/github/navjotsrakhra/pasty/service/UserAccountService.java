@@ -5,7 +5,6 @@ import io.github.navjotsrakhra.pasty.model.UserAccount;
 import io.github.navjotsrakhra.pasty.model.mapper.UserAccountMapper;
 import io.github.navjotsrakhra.pasty.model.request.UserAccountRequestDto;
 import io.github.navjotsrakhra.pasty.repository.UserAccountRepository;
-import org.springframework.security.crypto.password.DelegatingPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
