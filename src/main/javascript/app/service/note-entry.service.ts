@@ -27,7 +27,7 @@ export class NoteEntryService {
             }
         })
         let url = response.headers.get('Location');
-        let noteResponse: NoteEntryResponse = await response.json() as NoteEntryResponse;
+        await response.json();
         return `${url}`;
     }
 }

@@ -24,6 +24,7 @@ public class SecurityConfig {
                                 .requestMatchers("/api/note/*").permitAll()
                                 .requestMatchers("/api/note").permitAll()
                                 .requestMatchers("/api/user").permitAll()
+                                .requestMatchers("/api/user/is-logged-in").permitAll()
                                 .anyRequest().authenticated()
                 )
                 .formLogin(Customizer.withDefaults())

@@ -1,0 +1,22 @@
+.clickable {
+  cursor: pointer;
+}
+
+.header-container {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+}
+
+.fill {
+  display: flex;
+  flex-grow: 50;
+}
+
+.spacer {
+  display: flex;
+  flex-grow: 1;
+}
+.header-container {
+  padding: 10px;
+}

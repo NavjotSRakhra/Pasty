@@ -7,10 +7,7 @@ import io.github.navjotsrakhra.pasty.model.request.UserAccountRequestDto;
 import io.github.navjotsrakhra.pasty.service.UserAccountService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
 import java.util.Optional;
@@ -41,5 +38,10 @@ public class UserAccountController {
         return ResponseEntity
                 .noContent()
                 .build();
+    }
+
+    @GetMapping("/is-logged-in")
+    public ResponseEntity<Boolean> isLoggedIn(Principal principal) {
+        return ResponseEntity.ok(principal != null);
     }
 }

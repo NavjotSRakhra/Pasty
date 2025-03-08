@@ -1,0 +1,14 @@
+<mat-toolbar>
+    <button mat-icon-button class="Menu hamburger-menu" aria-label="Menu">
+        <mat-icon class="hamburger-menu-icon">menu</mat-icon>
+    </button>
+    <div class="header-container">
+        <span [routerLink]="['']" class="clickable heading">Pasty</span>
+        <div class="fill"></div>
+        <span (click)="navigate('/login')" class="clickable heading" *ngIf="!isLoggedIn">Login</span>
+        <div class="spacer"></div>
+        <span [routerLink]="['/signup']" class="clickable heading">Sign up</span>
+        <div class="spacer"></div>
+        <span (click)="navigate('/logout')" class="clickable heading" *ngIf="isLoggedIn">Logout</span>
+    </div>
+</mat-toolbar>

@@ -31,13 +31,14 @@ public class NoteController {
     public ResponseEntity<NoteResponseDto> createNote(@RequestBody NoteRequestDto noteRequestDto, Principal principal) {
         var response = this.noteEntryService.createNote(noteRequestDto, Optional.ofNullable(principal));
         return response.map(noteResponseDto -> ResponseEntity.created(
-                        ServletUriComponentsBuilder
-                                .fromCurrentRequest()
-                                .replacePath("/n/{urlIdentifier}")
-                                .buildAndExpand(noteResponseDto.getUrlIdentifier())
-                                .toUri())
-                .body(noteResponseDto)).orElseGet(() -> ResponseEntity
-                .badRequest()
-                .build());
+                                ServletUriComponentsBuilder
+                                        .fromCurrentRequest()
+                                        .replacePath("/n/{urlIdentifier}")
+                                        .buildAndExpand(noteResponseDto.getUrlIdentifier())
+                                        .toUri())
+                        .body(noteResponseDto))
+                .orElseGet(() -> ResponseEntity
+                        .badRequest()
+                        .build());
     }
 }
