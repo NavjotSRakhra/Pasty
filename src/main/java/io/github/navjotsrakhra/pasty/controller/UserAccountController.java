@@ -28,7 +28,7 @@ public class UserAccountController {
         return
                 ResponseEntity
                         .status(HttpStatus.SEE_OTHER)
-                        .header("Location", "/")
+                        .header("Location", "/login")
                         .build();
     }
 
